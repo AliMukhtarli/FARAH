@@ -1419,11 +1419,11 @@ body {
   margin: 20px 0 -8%;
   background: linear-gradient(
     180deg,
-    #6b4a2c 0%,
-    #8a5e36 30%,
-    #a47242 55%,
-    #6e4a2a 80%,
-    #2c1c10 100%
+    #8a4513 0%,
+    #6f3812 25%,
+    #4f2810 55%,
+    #2a1810 85%,
+    #1c1a17 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
