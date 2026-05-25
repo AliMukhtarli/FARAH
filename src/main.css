@@ -349,4 +349,145 @@ body {
   }
 }
 
+/* ═══════════════════════════════════
+   ABOUT SECTION
+═══════════════════════════════════ */
 
+.about-section {
+  background: var(--cream-dark);
+  padding: 100px 0 90px;
+}
+
+.about-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 80px;
+}
+
+/* ── Heading block ── */
+.about-heading-block {
+  margin-bottom: 48px;
+}
+
+.about-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  line-height: 1;
+}
+
+.about-heading-row--2 {
+  margin: 10px 0;
+}
+
+.about-heading-row--3 {
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.about-heading-word {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: -1px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ── Inline images ── */
+.about-img-wrap {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.about-img-wrap--round {
+  width: clamp(80px, 9vw, 120px);
+  height: clamp(60px, 7vw, 90px);
+  border-radius: 100px;
+}
+
+.about-img-wrap--rect {
+  width: clamp(120px, 14vw, 190px);
+  height: clamp(60px, 7vw, 90px);
+  border-radius: 100px;
+}
+
+.about-inline-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Inline stats (next to "keyfiyyət") ── */
+.about-stats-inline {
+  display: flex;
+  align-items: flex-end;
+  gap: 36px;
+  padding-bottom: 8px;
+}
+
+.about-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.about-stat-value {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(18px, 2.2vw, 26px);
+  font-weight: 700;
+  color: var(--charcoal);
+  line-height: 1;
+}
+
+.about-stat-label {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+  max-width: 90px;
+  line-height: 1.3;
+}
+
+/* ── Body paragraph ── */
+.about-body {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-width: 700px;
+  font-weight: 300;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .about-container {
+    padding: 0 32px;
+  }
+
+  .about-heading-row--3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .about-stats-inline {
+    gap: 24px;
+  }
+
+  .about-body {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-section {
+    padding: 64px 0 60px;
+  }
+
+  .about-heading-row {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
