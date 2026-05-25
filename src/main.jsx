@@ -5,6 +5,7 @@ import FarahHero from "./FarahHero.jsx";
 import About from "./AboutSection.jsx";
 import ProductionTech from "./ProductionTechSection.jsx";
 import DigitalFlow from "./DigitalFlowSection.jsx";
+import B2B from "./B2BSection.jsx";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <About />
       <ProductionTech />
       <DigitalFlow />
+      <B2B />
     </div>
   );
 }
