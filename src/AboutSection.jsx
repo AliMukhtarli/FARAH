@@ -15,7 +15,7 @@ export default function AboutSection() {
             <span className="about-heading-word">15 il</span>
             <div className="about-img-wrap about-img-wrap--round">
               <img
-                src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=300&q=80"
+                src="./Sofa.jpg"
                 alt="Bej yastıq"
                 className="about-inline-img"
               />
