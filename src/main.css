@@ -697,8 +697,13 @@ body {
 ═══════════════════════════════════ */
 .flow-section {
   position: relative;
-  padding: 80px clamp(20px, 4vw, 60px);
-  background-color: var(--cream);
+  padding: 0;
+  min-height: clamp(520px, 80vh, 820px);
+  background-image: url('/Table.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 10px solid rgba(212, 195, 179, 1);
 }
 
 .flow-container {
@@ -706,13 +711,8 @@ body {
   max-width: 1280px;
   margin: 0 auto;
   padding: clamp(48px, 6vw, 80px) clamp(28px, 4vw, 64px);
-  border: 10px solid rgba(212, 195, 179, 1);
-  border-radius: 8px;
-  background-image: url('/Table.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
+  background: transparent;
+  border: none;
 }
 
 .flow-header,
@@ -766,17 +766,29 @@ body {
   align-items: flex-end;
 }
 
+/* Staggered offsets — cards 2 & 3 are pulled inward (toward the chair),
+   cards 1 & 4 stay at the column edge. Mirrored for left vs right column. */
+.flow-col--left  .flow-card:nth-child(1) { transform: translateX(0); }
+.flow-col--left  .flow-card:nth-child(2) { transform: translateX(clamp(20px, 4vw, 56px)); }
+.flow-col--left  .flow-card:nth-child(3) { transform: translateX(clamp(14px, 3vw, 40px)); }
+.flow-col--left  .flow-card:nth-child(4) { transform: translateX(0); }
+
+.flow-col--right .flow-card:nth-child(1) { transform: translateX(0); }
+.flow-col--right .flow-card:nth-child(2) { transform: translateX(clamp(-56px, -4vw, -20px)); }
+.flow-col--right .flow-card:nth-child(3) { transform: translateX(clamp(-40px, -3vw, -14px)); }
+.flow-col--right .flow-card:nth-child(4) { transform: translateX(0); }
+
 /* Orange feature pill */
 .flow-card {
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
   background: var(--orange);
   color: #fff;
-  padding: 14px 18px;
+  padding: 16px 22px;
   border-radius: 14px;
   width: 100%;
-  max-width: 320px;
+  max-width: 280px;
   box-shadow: 0 4px 14px rgba(224, 123, 42, 0.18);
 }
 
@@ -826,14 +838,17 @@ body {
   }
 
   .flow-card { max-width: none; }
+
+  /* Reset staggered offsets on small screens */
+  .flow-col--left  .flow-card,
+  .flow-col--right .flow-card {
+    transform: none;
+  }
 }
 
 @media (max-width: 600px) {
-  .flow-section { padding: 48px 16px; }
-
   .flow-container {
     padding: 32px 20px;
-    border-width: 6px;
   }
 }
 
