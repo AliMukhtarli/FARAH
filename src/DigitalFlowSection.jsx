@@ -100,7 +100,7 @@ export default function DigitalFlowSection() {
         <div className="flow-header">
           <h2 className="flow-title">Dizayndan istehsalata tək rəqəmsal axın</h2>
           <p className="flow-subtitle">
-            3D modeldən paketlənməyə qədər layihələr eyni rəqəmsal sistemdə izlənilir —
+            3D modeldən paketlənməyə qədər layihələr eyni rəqəmsal sistemdə izlənilir— 
             müştərilərimiz hər mərhələni real vaxtda görə bilir.
           </p>
         </div>

@@ -743,6 +743,7 @@ body {
   color: var(--text-muted);
   font-weight: 300;
   max-width: 480px;
+  margin-left: clamp(20px, 3vw, 9px);
 }
 
 .flow-grid {
@@ -766,17 +767,17 @@ body {
   align-items: flex-end;
 }
 
-/* Staggered offsets — cards 2 & 3 are pulled inward (toward the chair),
-   cards 1 & 4 stay at the column edge. Mirrored for left vs right column. */
-.flow-col--left  .flow-card:nth-child(1) { transform: translateX(0); }
-.flow-col--left  .flow-card:nth-child(2) { transform: translateX(clamp(20px, 4vw, 56px)); }
-.flow-col--left  .flow-card:nth-child(3) { transform: translateX(clamp(14px, 3vw, 40px)); }
-.flow-col--left  .flow-card:nth-child(4) { transform: translateX(0); }
+/* Staggered offsets — cards 1 & 4 are pulled inward (toward the chair),
+   cards 2 & 3 stay at the column edge. Mirrored for left vs right column. */
+.flow-col--left  .flow-card:nth-child(1) { transform: translateX(clamp(20px, 4vw, 56px)); }
+.flow-col--left  .flow-card:nth-child(2) { transform: translateX(0); }
+.flow-col--left  .flow-card:nth-child(3) { transform: translateX(0); }
+.flow-col--left  .flow-card:nth-child(4) { transform: translateX(clamp(14px, 3vw, 40px)); }
 
-.flow-col--right .flow-card:nth-child(1) { transform: translateX(0); }
-.flow-col--right .flow-card:nth-child(2) { transform: translateX(clamp(-56px, -4vw, -20px)); }
-.flow-col--right .flow-card:nth-child(3) { transform: translateX(clamp(-40px, -3vw, -14px)); }
-.flow-col--right .flow-card:nth-child(4) { transform: translateX(0); }
+.flow-col--right .flow-card:nth-child(1) { transform: translateX(clamp(-56px, -4vw, -20px)); }
+.flow-col--right .flow-card:nth-child(2) { transform: translateX(0); }
+.flow-col--right .flow-card:nth-child(3) { transform: translateX(0); }
+.flow-col--right .flow-card:nth-child(4) { transform: translateX(clamp(-40px, -3vw, -14px)); }
 
 /* Orange feature pill */
 .flow-card {
