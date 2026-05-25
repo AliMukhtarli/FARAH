@@ -1243,3 +1243,242 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+.footer {
+  position: relative;
+  background: #1c1a17;
+  color: rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+}
+
+.footer-container {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 80px clamp(24px, 5vw, 80px) 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.2fr 1.3fr;
+  gap: clamp(28px, 4vw, 64px);
+  padding-bottom: 60px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Brand column */
+.footer-col--brand {
+  gap: 20px;
+}
+
+.footer-brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.footer-brand-sub {
+  font-size: 10.5px;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  max-width: 280px;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.footer-social {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.footer-social:hover {
+  background: var(--orange);
+  color: #fff;
+}
+
+.footer-social-img {
+  width: 20px;
+  height: 20px;
+  display: block;
+  object-fit: contain;
+}
+
+/* Headings */
+.footer-heading {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 22px;
+  text-transform: uppercase;
+}
+
+/* Link lists */
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-links a {
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.78);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--orange);
+}
+
+/* Contact list */
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.footer-contact a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-contact a:hover {
+  color: var(--orange);
+}
+
+.footer-contact-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 1px;
+}
+
+/* Giant FARAH wordmark — bronze/wood gradient, partially clipped */
+.footer-wordmark {
+  font-family: 'DM Sans', sans-serif;
+  font-style: bold;
+  font-weight: 900;
+  font-size: 290px;
+  line-height: 0.75;
+  text-align: center;
+  letter-spacing: 23px;
+  margin: 20px 0 -8%;
+  background: linear-gradient(
+    180deg,
+    #6b4a2c 0%,
+    #8a5e36 30%,
+    #a47242 55%,
+    #6e4a2a 80%,
+    #2c1c10 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.95;
+}
+
+/* Bottom strip */
+.footer-bottom {
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 22px clamp(24px, 5vw, 8px);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: rgba(248, 246, 237, 1);
+  text-transform: uppercase;
+  text-align: left;
+  z-index: 1;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1000px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px 32px;
+  }
+}
+
+@media (max-width: 560px) {
+  .footer-container {
+    padding-top: 56px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding-bottom: 40px;
+  }
+
+  .footer-brand-desc { max-width: none; }
+
+  .footer-wordmark {
+    font-size: clamp(96px, 32vw, 200px);
+    margin-bottom: -4%;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+  }
+
+
+}
