@@ -510,6 +510,7 @@ body {
 .tech-section {
   background-color: var(--cream);
   padding: 100px 0 120px;
+  border: 10px solid rgba(212, 195, 179, 1);
 }
 
 .tech-container {
@@ -556,7 +557,12 @@ body {
 .tech-cell--wide { grid-column: span 6; }
 
 /* Row 3: 3 equal cards (2 cols each) */
-.tech-cell--caption { grid-column: span 2; }
+.tech-cell--caption {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
 
 .tech-cell {
   position: relative;
@@ -566,7 +572,6 @@ body {
 /* Image cells */
 .tech-cell--image {
   overflow: hidden;
-  background: #2a2a2a;
 }
 
 .tech-cell--r1l,
@@ -580,9 +585,11 @@ body {
 }
 
 .tech-cell--square {
+  width: 100%;
   aspect-ratio: 1 / 1;
   border-radius: 18px;
 }
+
 
 .tech-img {
   width: 100%;
@@ -651,19 +658,12 @@ body {
     padding: 80px 0 90px;
   }
 
-  .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
+  /* Keep 6-col grid, but stack row 1 cards full-width.
+     Row 3 stays 3-up (2 cols each) so all three squares stay equal size. */
   .tech-cell--r1l,
-  .tech-cell--r1r { grid-column: span 1; }
-  .tech-cell--wide { grid-column: span 2; }
-  .tech-cell--caption { grid-column: span 1; }
-
-  /* On mobile, last (3rd) caption card spans full width */
-  .tech-cell--caption:last-child {
-    grid-column: span 2;
-  }
+  .tech-cell--r1r { grid-column: span 6; }
+  .tech-cell--wide { grid-column: span 6; }
+  .tech-cell--caption { grid-column: span 2; }
 
   .tech-overlay-card {
     left: 20px;
@@ -685,8 +685,7 @@ body {
   .tech-cell--r1l,
   .tech-cell--r1r,
   .tech-cell--wide,
-  .tech-cell--caption,
-  .tech-cell--caption:last-child {
+  .tech-cell--caption {
     grid-column: span 1;
   }
 
