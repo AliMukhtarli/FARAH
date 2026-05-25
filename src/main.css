@@ -940,53 +940,62 @@ img {
 }
 
 @media (max-width: 760px) {
-  /* Stack groups vertically with the table visible between them */
-  .flow-grid {
-    grid-template-columns: 1fr;
-    gap: clamp(180px, 28vh, 280px);
+  /* Pull the top group up by trimming both the container's top padding
+     and the header's bottom margin on mobile */
+  .flow-container {
+    padding-top: 28px;
   }
 
-  /* Each group: 2 columns × 2 rows, all 4 cards exactly the same height */
+  .flow-header {
+    margin-bottom: 8px;
+  }
+
+  /* Stack the two card groups vertically with the table image visible between them.
+     Each group is a single column of 4 cards (not 2×2). */
+  .flow-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(220px, 34vh, 340px);
+  }
+
   .flow-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 1fr;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
-    align-items: stretch;
   }
 
   .flow-col--left,
   .flow-col--right {
-    align-items: stretch;
+    align-items: center;
   }
 
   .flow-card {
-    max-width: none;
-    height: 100%;
-    padding: 12px 14px;
-    gap: 10px;
+    width: 100%;
+    max-width: 360px;
+    padding: 14px 18px;
+    gap: 12px;
     align-items: center;
   }
 
   .flow-card-icon {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     margin-top: 0;
   }
 
-  .flow-card-title { font-size: 12.5px; line-height: 1.2; }
-  .flow-card-desc  { font-size: 10.5px; line-height: 1.4; }
+  .flow-card-title { font-size: 13.5px; line-height: 1.25; }
+  .flow-card-desc  { font-size: 11.5px; line-height: 1.5; }
 
-  /* Reset staggered offsets on small screens */
-  .flow-col--left  .flow-card,
-  .flow-col--right .flow-card {
+  /* Reset staggered offsets on small screens — must match the nth-child specificity */
+  .flow-col--left  .flow-card:nth-child(n),
+  .flow-col--right .flow-card:nth-child(n) {
     transform: none;
   }
 }
 
 @media (max-width: 600px) {
   .flow-container {
-    padding: 36px 20px;
+    padding: 20px 20px 36px;
   }
 
   .flow-subtitle {
@@ -994,7 +1003,7 @@ img {
   }
 
   .flow-grid {
-    gap: clamp(160px, 25vh, 240px);
+    gap: clamp(200px, 32vh, 300px);
   }
 }
 
@@ -1004,27 +1013,21 @@ img {
   }
 
   .flow-container {
-    padding: 28px 14px;
+    padding: 16px 14px 28px;
   }
 
-  /* On phones, stack as single column with table visible between the two groups */
-  .flow-col {
-    grid-template-columns: 1fr;
-    gap: 8px;
+  .flow-header {
+    margin-bottom: 6px;
   }
 
   .flow-grid {
-    gap: clamp(140px, 24vh, 200px);
+    gap: clamp(180px, 30vh, 260px);
   }
 
   .flow-card {
     padding: 12px 16px;
     border-radius: 12px;
-    height: auto;
   }
-
-  .flow-card-title { font-size: 13px; }
-  .flow-card-desc  { font-size: 11.5px; line-height: 1.5; }
 }
 
 .iconsvg {
@@ -1613,7 +1616,7 @@ img {
   font-size: clamp(80px, 22vw, 290px);
   line-height: 0.75;
   text-align: center;
-  letter-spacing: clamp(4px, 1.8vw, 23px);
+  letter-spacing: clamp(2px, 1.8vw, 29px);
   margin: 20px 0 -6%;
   background: linear-gradient(
     180deg,
