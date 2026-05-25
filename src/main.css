@@ -62,8 +62,8 @@ body {
 }
 
 .nav-logo-icon {
-  width: 44px;
-  height: 44px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
   display: block;
   flex-shrink: 0;
@@ -403,15 +403,15 @@ body {
 }
 
 .about-img-wrap--round {
-  width: clamp(80px, 9vw, 120px);
-  height: clamp(60px, 7vw, 90px);
-  border-radius: 100px;
+  width: clamp(150px, 8vw, 100px);
+  height: clamp(50px, 5.5vw, 72px);
+  border-radius: 20px;
 }
 
 .about-img-wrap--rect {
-  width: clamp(120px, 14vw, 190px);
-  height: clamp(60px, 7vw, 90px);
-  border-radius: 100px;
+  width: clamp(200px, 11vw, 150px);
+  height: clamp(55px, 5.5vw, 72px);
+  border-radius: 20px;
 }
 
 .about-inline-img {
@@ -419,6 +419,12 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+.about-img-wrap--rect .about-inline-img {
+  object-position: center 55%;
+  transform: scale(1.03);
+  transform-origin: center 65%;
 }
 
 /* ── Inline stats (next to "keyfiyyət") ── */
