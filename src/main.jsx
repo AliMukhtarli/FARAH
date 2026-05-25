@@ -6,6 +6,7 @@ import About from "./AboutSection.jsx";
 import ProductionTech from "./ProductionTechSection.jsx";
 import DigitalFlow from "./DigitalFlowSection.jsx";
 import B2B from "./B2BSection.jsx";
+import ProcessSteps from "./ProcessStepsSection.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <ProductionTech />
       <DigitalFlow />
       <B2B />
+      <ProcessSteps />
     </div>
   );
 }
