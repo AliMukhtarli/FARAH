@@ -3,12 +3,14 @@ import { createRoot } from "react-dom/client";
 import "./main.css";
 import FarahHero from "./FarahHero.jsx";
 import About from "./AboutSection.jsx";
+import ProductionTech from "./ProductionTechSection.jsx";
 
 function App() {
   return (
     <div>
       <FarahHero />
       <About />
+      <ProductionTech />
     </div>
   );
 }
