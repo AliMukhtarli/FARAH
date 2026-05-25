@@ -1,8 +1,8 @@
 export default function AboutSection() {
   const stats = [
     { value: "8.000m²", label: "İstehsalat Sahəsi" },
-    { value: "320+", label: "MDB Layihə" },
-    { value: "50+", label: "Ünvan və Mükafatlar" },
+    { value: "320+", label: "B2B Layihə" },
+    { value: "50+", label: "Usta və Mühəndis" },
   ];
 
   return (
