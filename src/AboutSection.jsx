@@ -1,15 +1,89 @@
+import { useEffect, useRef, useState } from "react";
+
+/* Animates a number from 0 → target with an ease-out cubic curve. */
+function useCountUp(target, isActive, duration = 2000) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!isActive) {
+      setValue(0);
+      return undefined;
+    }
+
+    let frame;
+    const start = performance.now();
+
+    const tick = (now) => {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(target * eased));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [target, isActive, duration]);
+
+  return value;
+}
+
+/* Azerbaijani-style thousand separator using "." (e.g. 8000 → "8.000"). */
+function formatValue(value, format) {
+  if (format === "thousand-dot") {
+    return value.toLocaleString("de-DE");
+  }
+  return value.toString();
+}
+
+function AnimatedStat({ value, suffix, format, label, isActive }) {
+  const animated = useCountUp(value, isActive);
+  return (
+    <div className="about-stat">
+      <span className="about-stat-value">
+        {formatValue(animated, format)}
+        {suffix}
+      </span>
+      <span className="about-stat-label">{label}</span>
+    </div>
+  );
+}
+
 export default function AboutSection() {
+  const sectionRef = useRef(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const stats = [
-    { value: "8.000m²", label: "İstehsalat Sahəsi" },
-    { value: "320+", label: "B2B Layihə" },
-    { value: "50+", label: "Usta və Mühəndis" },
+    { value: 8000, suffix: "m²", format: "thousand-dot", label: "İstehsalat Sahəsi" },
+    { value: 320, suffix: "+", label: "B2B Layihə" },
+    { value: 50, suffix: "+", label: "Usta və Mühəndis" },
   ];
 
   return (
-    <section className="about-section">
+    <section
+      ref={sectionRef}
+      className={`about-section${inView ? " is-visible" : ""}`}
+    >
       <div className="about-container">
 
-        {/* ── Big heading with inline images ── */}
         <div className="about-heading-block">
           <div className="about-heading-row about-heading-row--1">
             <span className="about-heading-word">15 il</span>
@@ -37,19 +111,21 @@ export default function AboutSection() {
           <div className="about-heading-row about-heading-row--3">
             <span className="about-heading-word">keyfiyyət</span>
 
-            {/* Stats sit inline with the last word */}
             <div className="about-stats-inline">
               {stats.map((s) => (
-                <div className="about-stat" key={s.label}>
-                  <span className="about-stat-value">{s.value}</span>
-                  <span className="about-stat-label">{s.label}</span>
-                </div>
+                <AnimatedStat
+                  key={s.label}
+                  value={s.value}
+                  suffix={s.suffix}
+                  format={s.format}
+                  label={s.label}
+                  isActive={inView}
+                />
               ))}
             </div>
           </div>
         </div>
 
-        {/* ── Body text ── */}
         <p className="about-body">
           Farah Mobilya 2011-ci ildən bəri İstanbulda fərdi və kommersiya müştəriləri üçün premium
           mebel istehsal edir. Ailə şirkəti olaraq başladığımız yolu indi 8.000 m² istehsalat sahəsi
