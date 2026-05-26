@@ -1,3 +1,11 @@
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 const SHOP_LINKS = [
   "Qonaq otağı",
   "Yataq otağı",
@@ -67,11 +75,136 @@ const PlayIcon = () => (
   </svg>
 );
 
-export default function FooterSection() {
+const ArrowUpIcon = () => (
+  <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+  </svg>
+);
+
+/**
+ * MagneticButton — wraps any element and attaches a GSAP-powered magnetic
+ * hover effect (the element subtly follows the cursor and tilts in 3D).
+ */
+function MagneticButton({ as: Tag = "a", className = "", children, ...props }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const el = ref.current;
+    if (!el) return;
+
+    const ctx = gsap.context(() => {
+      const onMove = (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        gsap.to(el, {
+          x: x * 0.35,
+          y: y * 0.35,
+          rotationX: -y * 0.12,
+          rotationY: x * 0.12,
+          scale: 1.06,
+          ease: "power2.out",
+          duration: 0.4,
+          transformPerspective: 600,
+        });
+      };
+
+      const onLeave = () => {
+        gsap.to(el, {
+          x: 0,
+          y: 0,
+          rotationX: 0,
+          rotationY: 0,
+          scale: 1,
+          ease: "elastic.out(1, 0.4)",
+          duration: 1.1,
+        });
+      };
+
+      el.addEventListener("mousemove", onMove);
+      el.addEventListener("mouseleave", onLeave);
+
+      return () => {
+        el.removeEventListener("mousemove", onMove);
+        el.removeEventListener("mouseleave", onLeave);
+      };
+    }, el);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <footer className="footer">
+    <Tag ref={ref} className={className} {...props}>
+      {children}
+    </Tag>
+  );
+}
+
+export default function FooterSection() {
+  const wrapperRef = useRef(null);
+  const giantTextRef = useRef(null);
+  const gridRef = useRef(null);
+  const colsRef = useRef(null);
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!wrapperRef.current) return;
+
+    const ctx = gsap.context(() => {
+      // Giant FARAH wordmark — slow parallax & fade as the footer enters
+      gsap.fromTo(
+        giantTextRef.current,
+        { y: 80, scale: 0.92, opacity: 0 },
+        {
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          ease: "power1.out",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top 85%",
+            end: "bottom bottom",
+            scrub: 1,
+          },
+        }
+      );
+
+      // Columns + bottom bar — staggered fade-up
+      gsap.fromTo(
+        [colsRef.current, bottomRef.current],
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.18,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top 70%",
+            end: "center center",
+            scrub: 1,
+          },
+        }
+      );
+    }, wrapperRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  return (
+    <footer ref={wrapperRef} className="footer">
+      {/* Cinematic background layers */}
+      <div className="footer-aurora" aria-hidden="true" />
+      <div ref={gridRef} className="footer-bg-grid" aria-hidden="true" />
+
       <div className="footer-container">
-        <div className="footer-grid">
+        <div ref={colsRef} className="footer-grid">
 
           {/* Brand column */}
           <div className="footer-col footer-col--brand">
@@ -82,14 +215,14 @@ export default function FooterSection() {
 
             <p className="footer-brand-desc">
               Türkiyə və onun hüdudlarından kənarda hər bir evə istilik,
-               gözəllik və qalıcı keyfiyyət gətirən premium, əl işi mebellər.
+              gözəllik və qalıcı keyfiyyət gətirən premium, əl işi mebellər.
             </p>
 
             <div className="footer-socials">
-              <a href="#" aria-label="Instagram" className="footer-social"><InstagramIcon /></a>
-              <a href="#" aria-label="Facebook" className="footer-social"><FacebookIcon /></a>
-              <a href="#" aria-label="YouTube" className="footer-social"><YoutubeIcon /></a>
-              <a href="#" aria-label="TikTok" className="footer-social"><PlayIcon /></a>
+              <MagneticButton href="#" aria-label="Instagram" className="footer-social"><InstagramIcon /></MagneticButton>
+              <MagneticButton href="#" aria-label="Facebook" className="footer-social"><FacebookIcon /></MagneticButton>
+              <MagneticButton href="#" aria-label="YouTube" className="footer-social"><YoutubeIcon /></MagneticButton>
+              <MagneticButton href="#" aria-label="TikTok" className="footer-social"><PlayIcon /></MagneticButton>
             </div>
           </div>
 
@@ -138,12 +271,31 @@ export default function FooterSection() {
 
         </div>
 
-        {/* Giant brand wordmark */}
-        <div className="footer-wordmark" aria-hidden="true">FARAH</div>
+        {/* Giant FARAH wordmark */}
+        <div ref={giantTextRef} className="footer-wordmark" aria-hidden="true">FARAH</div>
 
         {/* Bottom bar */}
-        <div className="footer-bottom">
-          © 2026 FARAH MOBILYA. ALL RIGHTS RESERVED. CRAFTED WITH IN ISTANBUL.
+        <div ref={bottomRef} className="footer-bottom">
+          <div className="footer-bottom-copy">
+            © 2026 FARAH MOBILYA. ALL RIGHTS RESERVED. CRAFTED WITH IN ISTANBUL.
+          </div>
+
+          <MagneticButton as="div" className="footer-glass-pill footer-made-with">
+            <span className="footer-made-text">Crafted with</span>
+            <span className="footer-heart" aria-hidden="true">❤</span>
+            <span className="footer-made-text">by</span>
+            <span className="footer-made-brand">ALI</span>
+          </MagneticButton>
+
+          <MagneticButton
+            as="button"
+            type="button"
+            onClick={scrollToTop}
+            className="footer-glass-pill footer-back-top"
+            aria-label="Yuxarı qayıt"
+          >
+            <ArrowUpIcon />
+          </MagneticButton>
         </div>
       </div>
     </footer>
