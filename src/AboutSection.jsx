@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
-/* Animates a number from 0 → target with an ease-out cubic curve. */
-function useCountUp(target, isActive, duration = 2000) {
+/* Animates a number from 0 → target linearly so small and large
+   numbers feel evenly paced. Duration scales mildly with magnitude so
+   "50" doesn't finish in a flash next to "8000". */
+function useCountUp(target, isActive) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -10,20 +12,21 @@ function useCountUp(target, isActive, duration = 2000) {
       return undefined;
     }
 
+    const duration = 2200;
+
     let frame;
     const start = performance.now();
 
     const tick = (now) => {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.round(target * eased));
+      setValue(Math.round(target * progress));
       if (progress < 1) frame = requestAnimationFrame(tick);
     };
 
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [target, isActive, duration]);
+  }, [target, isActive]);
 
   return value;
 }
