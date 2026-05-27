@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const FEATURES_LEFT = [
   {
     id: "solidworks",
@@ -80,19 +82,41 @@ const FEATURES_RIGHT = [
   },
 ];
 
-function FlowCard({ feature }) {
+const ArrowIcon = () => (
+  <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+    <path d="M5 12h14" />
+    <path d="M13 5l7 7-7 7" />
+  </svg>
+);
+
+function FlowCard({ feature, isHovered, onEnter, onLeave }) {
   return (
-    <div className="flow-card">
+    <div
+      className={`flow-card${isHovered ? " is-hovered" : ""}`}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+    >
+      {isHovered ? (
+        <>
+          <span className="flow-card-bracket flow-card-bracket--tl" aria-hidden="true" />
+          <span className="flow-card-bracket flow-card-bracket--br" aria-hidden="true" />
+        </>
+      ) : null}
       <div className="flow-card-icon">{feature.icon}</div>
       <div className="flow-card-text">
         <h3 className="flow-card-title">{feature.title}</h3>
         <p className="flow-card-desc">{feature.desc}</p>
+      </div>
+      <div className={`flow-card-cta${isHovered ? " is-visible" : ""}`} aria-hidden={!isHovered}>
+        <ArrowIcon />
       </div>
     </div>
   );
 }
 
 export default function DigitalFlowSection() {
+  const [hoveredId, setHoveredId] = useState(null);
+
   return (
     <section className="flow-section">
       <div className="flow-container">
@@ -108,13 +132,25 @@ export default function DigitalFlowSection() {
         <div className="flow-grid">
           <div className="flow-col flow-col--left">
             {FEATURES_LEFT.map((f) => (
-              <FlowCard key={f.id} feature={f} />
+              <FlowCard
+                key={f.id}
+                feature={f}
+                isHovered={hoveredId === f.id}
+                onEnter={() => setHoveredId(f.id)}
+                onLeave={() => setHoveredId(null)}
+              />
             ))}
           </div>
 
           <div className="flow-col flow-col--right">
             {FEATURES_RIGHT.map((f) => (
-              <FlowCard key={f.id} feature={f} />
+              <FlowCard
+                key={f.id}
+                feature={f}
+                isHovered={hoveredId === f.id}
+                onEnter={() => setHoveredId(f.id)}
+                onLeave={() => setHoveredId(null)}
+              />
             ))}
           </div>
         </div>

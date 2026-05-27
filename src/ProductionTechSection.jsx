@@ -1,4 +1,16 @@
+import ZoomParallax from "./ZoomParallax.jsx";
+
 export default function ProductionTechSection() {
+  const images = [
+    { src: "/machinery.png", alt: "CNC alət dəsti" },
+    { src: "/machinery2.png", alt: "Avtomatik kənar bantlama" },
+    { src: "/machinery3.png", alt: "Fiber lazer kəsmə xətti" },
+    { src: "/machinery4.png", alt: "Sənaye tikiş və kəsmə" },
+    { src: "/machinery5.png", alt: "Modul yığma xətti" },
+    { src: "/Table.jpg", alt: "İstehsalat sahəsi" },
+    { src: "/FarahSofa.png", alt: "Farah Mobilya" },
+  ];
+
   return (
     <section className="tech-section">
       <div className="tech-container">
@@ -10,6 +22,10 @@ export default function ProductionTechSection() {
             Avropa istehsalı CNC, lazer və boyama sistemlərimiz istehsalında millimetrik dəqiqlik
             və günlük 200+ vahid istehsal qabiliyyəti təqdim edir.
           </p>
+        </div>
+
+        <div className="tech-parallax">
+          <ZoomParallax images={images} />
         </div>
 
         {/* Mosaic grid */}
