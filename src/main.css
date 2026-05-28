@@ -2583,7 +2583,6 @@ img {
 .product-detail-page {
   min-height: 100vh;
   background: var(--cream);
-  padding-bottom: 88px;
 }
 
 .product-detail-main {
@@ -2793,11 +2792,10 @@ img {
 }
 
 .product-detail-bar {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 90;
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: clamp(40px, 5vw, 56px);
   background: #1A1A1A;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -2910,6 +2908,188 @@ img {
   .product-detail-features,
   .product-detail-specs {
     max-width: none;
+  }
+}
+
+/* ─── CATEGORY LIST (similar products pills) ─── */
+.category-list {
+  width: min(var(--container-max), 100%);
+  margin: clamp(48px, 6vw, 72px) auto 0;
+  padding-top: 8px;
+}
+
+.category-list-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.category-list-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 3vw, 36px);
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.15;
+  margin: 0 0 8px;
+}
+
+.category-list-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+  margin: 0;
+  max-width: 420px;
+}
+
+.category-list-header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--charcoal);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 6px;
+  transition: color 0.2s ease;
+}
+
+.category-list-header-link:hover {
+  color: var(--orange);
+}
+
+.category-list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.category-list-item {
+  margin: 0;
+}
+
+.category-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  min-height: 88px;
+  padding: 20px clamp(22px, 3vw, 36px);
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    min-height 0.3s ease;
+}
+
+.category-list-row:hover,
+.category-list-row.is-hovered {
+  background: var(--orange);
+  color: #fff;
+  min-height: 96px;
+  box-shadow: 0 12px 32px rgba(224, 123, 42, 0.28);
+}
+
+.category-list-row-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.category-list-row-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(17px, 1.6vw, 20px);
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.category-list-row-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0;
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+
+.category-list-row:hover .category-list-row-sub,
+.category-list-row.is-hovered .category-list-row-sub {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.category-list-row-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.category-list-row-price {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(16px, 1.5vw, 18px);
+  font-weight: 600;
+  color: inherit;
+}
+
+.category-list-row-arrow {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.category-list-row:hover .category-list-row-arrow,
+.category-list-row.is-hovered .category-list-row-arrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-similar {
+  margin-top: 0;
+  border-top: none;
+  padding-top: clamp(28px, 3vw, 40px);
+}
+
+@media (max-width: 768px) {
+  .category-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .category-list-header-link {
+    margin-top: 0;
+  }
+
+  .category-list-row {
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 28px;
+    min-height: auto;
+    padding: 18px 22px;
+  }
+
+  .category-list-row-end {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
   }
 }
 

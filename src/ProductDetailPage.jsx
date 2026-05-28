@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
 import { getProductBySlug } from "./catalogProducts.js";
+import ProductSimilarSection from "./ProductSimilarSection.jsx";
 
 export default function ProductDetailPage() {
   const { slug } = useParams();
@@ -112,41 +113,43 @@ export default function ProductDetailPage() {
             </dl>
           </aside>
         </div>
-      </main>
 
-      <div className="product-detail-bar">
-        <div className="product-detail-bar-inner">
-          <div className="product-detail-bar-copy">
-            {product.barLines.map((line) => (
-              <p key={line}>{line}</p>
-            ))}
-          </div>
-          <div className="product-detail-bar-actions">
-            <div className="product-detail-qty" aria-label="Miqdar">
-              <button
-                type="button"
-                className="product-detail-qty-btn"
-                onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                aria-label="Azalt"
-              >
-                −
-              </button>
-              <span className="product-detail-qty-value">{quantity}</span>
-              <button
-                type="button"
-                className="product-detail-qty-btn"
-                onClick={() => setQuantity((q) => q + 1)}
-                aria-label="Artır"
-              >
-                +
+        <div className="product-detail-bar">
+          <div className="product-detail-bar-inner">
+            <div className="product-detail-bar-copy">
+              {product.barLines.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
+            <div className="product-detail-bar-actions">
+              <div className="product-detail-qty" aria-label="Miqdar">
+                <button
+                  type="button"
+                  className="product-detail-qty-btn"
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  aria-label="Azalt"
+                >
+                  −
+                </button>
+                <span className="product-detail-qty-value">{quantity}</span>
+                <button
+                  type="button"
+                  className="product-detail-qty-btn"
+                  onClick={() => setQuantity((q) => q + 1)}
+                  aria-label="Artır"
+                >
+                  +
+                </button>
+              </div>
+              <button type="button" className="product-detail-cart-btn">
+                Səbətə at
               </button>
             </div>
-            <button type="button" className="product-detail-cart-btn">
-              Səbətə at
-            </button>
           </div>
         </div>
-      </div>
+
+        <ProductSimilarSection currentSlug={product.slug} />
+      </main>
     </div>
   );
 }

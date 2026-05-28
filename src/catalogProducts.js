@@ -148,3 +148,47 @@ export function slugFromCatalogName(name) {
   const base = name.replace(/\s+\d+$/, "").trim();
   return CATALOG_SLUG_BY_BASE_NAME[base] ?? "luna-liven";
 }
+
+/** Similar products list (temporary — backend later) */
+export const SIMILAR_PRODUCTS = [
+  {
+    id: "sim-1",
+    slug: "luna-asma-cilciraq",
+    title: "Aura Masa Lampası",
+    subtitle: "Yataq otağı üçün minimalist masa lampası.",
+    price: "$79",
+  },
+  {
+    id: "sim-2",
+    slug: "luna-liven",
+    title: "Lunna İstirahət Kürsüsü",
+    subtitle:
+      "Yumşaq parça və təbii ağac kombinasiyası ilə rahat oturacaq. Gündəlik istifadə üçün ideal.",
+    price: "$109",
+  },
+  {
+    id: "sim-3",
+    slug: "salis-istirahet-kursusu",
+    title: "Salis İstirahət Kürsüsü",
+    subtitle: "Qonaq otağı üçün zərif və rahat kürsü.",
+    price: "$240",
+  },
+  {
+    id: "sim-4",
+    slug: "aria-palid-masasi",
+    title: "Aria Palıd Masası",
+    subtitle: "Yemək otağı üçün təbii ağac masa.",
+    price: "$1,850",
+  },
+  {
+    id: "sim-5",
+    slug: "linear-komod",
+    title: "Linear Komod",
+    subtitle: "Saxlama və funksionallıq bir arada.",
+    price: "$3,200",
+  },
+];
+
+export function getSimilarProducts(currentSlug, limit = 5) {
+  return SIMILAR_PRODUCTS.filter((p) => p.slug !== currentSlug).slice(0, limit);
+}
