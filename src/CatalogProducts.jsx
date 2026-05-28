@@ -12,6 +12,7 @@ function ScrollRow({ items, rowLabel }) {
   const scrollerRef = useRef(null);
   const trackRef = useRef(null);
   const [thumb, setThumb] = useState({ width: 60, left: 0, hidden: true });
+  const interactionRef = useRef(false);
 
   const recalc = useCallback(() => {
     const scroller = scrollerRef.current;
@@ -53,12 +54,39 @@ function ScrollRow({ items, rowLabel }) {
     };
   }, [recalc]);
 
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    let last = Date.now();
+    const speedPxPerSecond = 32; // smooth, visible
+
+    const id = window.setInterval(() => {
+      const now = Date.now();
+      const dt = Math.min(64, now - last);
+      last = now;
+
+      if (interactionRef.current) return;
+
+      const scrollWidth = scroller.scrollWidth || 1;
+      const clientWidth = scroller.clientWidth || 1;
+      const maxScroll = Math.max(0, scrollWidth - clientWidth);
+      if (maxScroll <= 1) return;
+
+      const next = scroller.scrollLeft + (speedPxPerSecond * dt) / 1000;
+      scroller.scrollLeft = next >= maxScroll ? 0 : next;
+    }, 16);
+
+    return () => window.clearInterval(id);
+  }, []);
+
   const onTrackPointerDown = useCallback(
     (e) => {
       const scroller = scrollerRef.current;
       const track = trackRef.current;
       if (!scroller || !track) return;
 
+      interactionRef.current = true;
       const rect = track.getBoundingClientRect();
       const x = Math.min(Math.max(0, e.clientX - rect.left), rect.width);
 
@@ -70,6 +98,11 @@ function ScrollRow({ items, rowLabel }) {
       const targetLeft = Math.min(Math.max(0, x - thumb.width / 2), maxLeft);
       const targetScrollLeft = (targetLeft / maxLeft) * maxScroll;
       scroller.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+
+      // allow auto-scroll again after the smooth jump
+      window.setTimeout(() => {
+        interactionRef.current = false;
+      }, 450);
     },
     [thumb.width]
   );
@@ -81,6 +114,7 @@ function ScrollRow({ items, rowLabel }) {
     e.preventDefault();
     e.stopPropagation();
 
+    interactionRef.current = true;
     const rect = track.getBoundingClientRect();
     const startX = e.clientX;
     const startLeft = thumb.left;
@@ -98,6 +132,7 @@ function ScrollRow({ items, rowLabel }) {
     };
 
     const onUp = () => {
+      interactionRef.current = false;
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("pointerup", onUp);
     };
@@ -108,7 +143,20 @@ function ScrollRow({ items, rowLabel }) {
 
   return (
     <section className="catalog-row" aria-label={rowLabel}>
-      <div ref={scrollerRef} className="catalog-row-scroller" tabIndex={0}>
+      <div
+        ref={scrollerRef}
+        className="catalog-row-scroller"
+        tabIndex={0}
+        onPointerDown={() => {
+          interactionRef.current = true;
+        }}
+        onPointerUp={() => {
+          interactionRef.current = false;
+        }}
+        onPointerCancel={() => {
+          interactionRef.current = false;
+        }}
+      >
         {items.map((item) => (
           <article key={item.key} className="catalog-row-item">
             <div className="catalog-product-media">
