@@ -4,6 +4,7 @@ import NavBar from "./NavBar.jsx";
 import { getProductBySlug } from "./catalogProducts.js";
 import ProductSimilarSection from "./ProductSimilarSection.jsx";
 import ProductCollectionsSection from "./ProductCollectionsSection.jsx";
+import FooterSection from "./FooterSection.jsx";
 
 export default function ProductDetailPage() {
   const { slug } = useParams();
@@ -23,6 +24,7 @@ export default function ProductDetailPage() {
             Kataloqa qayıt
           </Link>
         </main>
+        <FooterSection />
       </div>
     );
   }
@@ -153,6 +155,8 @@ export default function ProductDetailPage() {
 
         <ProductCollectionsSection />
       </main>
+
+      <FooterSection />
     </div>
   );
 }
