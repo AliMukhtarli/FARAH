@@ -52,14 +52,17 @@ export default function CatalogPage() {
               </div>
             </div>
 
-            <img
-              className="catalog-hero-sofa"
-              src="/CatalogPageSofa.png"
-              alt="Farah kataloq divanı"
-            />
           </div>
 
-          <div className="catalog-filters">
+          <img
+            className="catalog-hero-sofa"
+            src="/CatalogPageSofa.png"
+            alt="Farah kataloq divanı"
+          />
+        </section>
+
+        <section className="catalog-cream" aria-label="Filtrlər">
+          <div className="catalog-cream-inner">
             <button
               type="button"
               className="catalog-filter-toggle"

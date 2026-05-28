@@ -53,24 +53,29 @@ body {
 /* ─── CATALOG PAGE ─── */
 .catalog-page {
   min-height: 100vh;
-  background: var(--cream);
+  background: #1A1A1A;
 }
 
 .catalog-main {
   padding-top: calc(var(--nav-height) + 36px);
+  padding-bottom: calc(var(--nav-height) + 36px);
+  background: #1A1A1A;
 }
 
 .catalog-hero {
-  width: var(--container-width);
+  width: min(1600px, 96%);
   margin-inline: auto;
-  padding: 0 var(--container-pad) 80px;
+  /* Black background must end exactly at the filter row */
+  padding: 10px 10px 10px;
+  margin-bottom: 45px;
+  position: relative;
 }
 
 .catalog-hero-card {
   position: relative;
-  background: rgba(245, 240, 234, 0.92);
-  border-radius: 44px;
+  background: var(--cream);
   min-height: clamp(420px, 62vh, 560px);
+  border-radius: 164px;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -78,6 +83,21 @@ body {
   padding: clamp(28px, 4vw, 56px);
   box-shadow: 0 16px 60px rgba(0, 0, 0, 0.10);
   border: 1px solid rgba(26, 26, 26, 0.10);
+}
+
+.catalog-cream {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: var(--cream);
+  /* Start cream exactly from the filter row top */
+  padding: 0 0 110px;
+  min-height: 320px;
+}
+
+.catalog-cream-inner {
+  width: min(1600px, 96%);
+  margin-inline: auto;
+  padding: 0 10px;
 }
 
 .catalog-hero-copy {
@@ -119,19 +139,17 @@ body {
 
 .catalog-hero-sofa {
   position: absolute;
-  right: clamp(6px, 1vw, 14px);
-  bottom: clamp(-12px, -2vw, -4px);
+  right: clamp(12px, 1.4vw, 22px);
+  bottom: clamp(-90px, -6vw, -48px);
   width: clamp(420px, 46vw, 860px);
   max-width: 62%;
   height: auto;
   object-fit: contain;
   pointer-events: none;
   filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.18));
+  z-index: 3;
 }
 
-.catalog-filters {
-  margin-top: 26px;
-}
 
 .catalog-filter-toggle {
   display: inline-flex;
@@ -144,7 +162,7 @@ body {
   font-size: 13px;
   letter-spacing: 0.3px;
   color: rgba(26, 26, 26, 0.8);
-  padding: 10px 4px;
+  padding: 12px 4px;
 }
 
 .catalog-filter-icon {
@@ -165,7 +183,7 @@ body {
 }
 
 .catalog-filter-panel.is-open {
-  max-height: 320px;
+  max-height: 420px;
   opacity: 1;
   transform: translateY(0);
   transition: max-height 700ms ease, opacity 340ms ease, transform 340ms ease;
@@ -203,9 +221,9 @@ body {
 @media (max-width: 900px) {
   .catalog-hero-card {
     grid-template-columns: 1fr;
-    border-radius: 34px;
     padding: 26px;
   }
+  .catalog-hero-card { border-radius: 34px; }
 
   .catalog-hero-sofa {
     position: relative;
