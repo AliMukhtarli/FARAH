@@ -44,6 +44,8 @@ html {
 } */
 
 body {
+  margin: 0;
+  padding: 0;
   font-family: 'DM Sans', sans-serif;
   background-color: var(--cream);
   color: var(--charcoal);
@@ -53,29 +55,48 @@ body {
 /* ─── CATALOG PAGE ─── */
 .catalog-page {
   min-height: 100vh;
+  position: relative;
+  background: var(--cream);
+}
+
+.catalog-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(var(--nav-height) + 36px + 680px);
   background: #1A1A1A;
+  z-index: 0;
+}
+
+.catalog-page > * {
+  position: relative;
+  z-index: 1;
 }
 
 .catalog-main {
   padding-top: calc(var(--nav-height) + 36px);
   padding-bottom: calc(var(--nav-height) + 36px);
-  background: #1A1A1A;
+
 }
 
 .catalog-hero {
-  width: min(1600px, 96%);
-  margin-inline: auto;
-  /* Black background must end exactly at the filter row */
-  padding: 10px 10px 10px;
+  background: #1A1A1A;
+  width: 100%;
+  padding: 10px 0 10px;
   margin-bottom: 45px;
   position: relative;
 }
 
 .catalog-hero-card {
+  width: min(1600px, 96%);
+  margin-inline: auto;
+
   position: relative;
   background: var(--cream);
   min-height: clamp(420px, 62vh, 560px);
-  border-radius: 164px;
+  border-radius: 123px;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
@@ -84,7 +105,6 @@ body {
   box-shadow: 0 16px 60px rgba(0, 0, 0, 0.10);
   border: 1px solid rgba(26, 26, 26, 0.10);
 }
-
 .catalog-cream {
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -108,7 +128,8 @@ body {
 .catalog-eyebrow {
   font-family: 'DM Sans', sans-serif;
   font-style: italic;
-  font-size: 14px;
+  font-size: 20px;
+  font-weight: 565;
   letter-spacing: 3px;
   color: rgba(28, 26, 23, 0.85);
   margin-bottom: 10px;
@@ -116,7 +137,7 @@ body {
 
 .catalog-title {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(44px, 5.2vw, 72px);
+  font-size: clamp(65px, 7.7vw, 107px);
   line-height: 1.05;
   font-weight: 600;
   color: var(--charcoal);
@@ -124,7 +145,8 @@ body {
 }
 
 .catalog-desc {
-  font-size: 14.5px;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.7;
   color: var(--text-muted);
   max-width: 520px;
@@ -146,6 +168,7 @@ body {
   height: auto;
   object-fit: contain;
   pointer-events: none;
+  transform: translate(-40px, 114px);
   filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.18));
   z-index: 3;
 }
@@ -223,7 +246,6 @@ body {
     grid-template-columns: 1fr;
     padding: 26px;
   }
-  .catalog-hero-card { border-radius: 34px; }
 
   .catalog-hero-sofa {
     position: relative;
@@ -245,11 +267,11 @@ img {
 /* ─── NAV ─── */
 .nav-sticky {
   position: fixed;
-  top: 0;
+  top: 20px;
   left: 0;
   right: 0;
   z-index: 100;
-  padding: 20px clamp(16px, 3vw, 48px) 0;
+  padding: 0 clamp(16px, 3vw, 48px);
   pointer-events: none;
 }
 
@@ -262,7 +284,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 clamp(20px, 3vw, 36px);
+  padding: 0 clamp(16px, 3vw, 48px);
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
 }
 

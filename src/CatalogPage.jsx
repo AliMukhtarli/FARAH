@@ -34,7 +34,7 @@ export default function CatalogPage() {
               <p className="catalog-eyebrow">QONAQ OTAĞINIZ ÜÇÜN</p>
               <h1 className="catalog-title">
                 Mükəmməl <br />
-                məkanınızı yaradın
+                məkanınızı&nbsp;yaradın
               </h1>
               <p className="catalog-desc">
                 Farah Mobilya ilə evinizə rahatlıq və zəriflik gətirin. Hər bir mebel
