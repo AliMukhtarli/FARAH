@@ -168,7 +168,6 @@ body {
   height: auto;
   object-fit: contain;
   pointer-events: none;
-  transform: translate(-40px, 114px);
   filter: drop-shadow(0 26px 50px rgba(0, 0, 0, 0.18));
   z-index: 3;
 }

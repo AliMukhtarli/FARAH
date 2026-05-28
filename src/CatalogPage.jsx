@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import NavBar from "./NavBar.jsx";
 
 const FILTERS = ["Hamısı", "Oturacaqlar", "Masalar", "İşıqlandırma", "Saxlama bölmələri"];
@@ -22,6 +23,7 @@ export default function CatalogPage() {
   const [activeFilter, setActiveFilter] = useState("Hamısı");
 
   const filterListId = useMemo(() => "catalog-filter-list", []);
+  const sofaOffset = useMemo(() => ({ x: -40, y: 114 }), []);
 
   return (
     <div className="catalog-page">
@@ -29,7 +31,12 @@ export default function CatalogPage() {
 
       <main className="catalog-main">
         <section className="catalog-hero" aria-label="Kataloq">
-          <div className="catalog-hero-card">
+          <motion.div
+            className="catalog-hero-card"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
             <div className="catalog-hero-copy">
               <p className="catalog-eyebrow">QONAQ OTAĞINIZ ÜÇÜN</p>
               <h1 className="catalog-title">
@@ -52,12 +59,15 @@ export default function CatalogPage() {
               </div>
             </div>
 
-          </div>
+          </motion.div>
 
-          <img
+          <motion.img
             className="catalog-hero-sofa"
             src="/CatalogPageSofa.png"
             alt="Farah kataloq divanı"
+            initial={{ opacity: 0, x: sofaOffset.x + 22, y: sofaOffset.y + 10 }}
+            animate={{ opacity: 1, x: sofaOffset.x, y: sofaOffset.y }}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           />
         </section>
 
