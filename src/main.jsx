@@ -10,6 +10,7 @@ import B2B from "./B2BSection.jsx";
 import ProcessSteps from "./ProcessStepsSection.jsx";
 import Footer from "./FooterSection.jsx";
 import CatalogPage from "./CatalogPage.jsx";
+import ProductDetailPage from "./ProductDetailPage.jsx";
 
 function HomePage() {
   return (
@@ -31,6 +32,7 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/product/:slug" element={<ProductDetailPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

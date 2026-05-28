@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { slugFromCatalogName } from "./catalogProducts.js";
 
 const ALL = "Hamısı";
 
@@ -158,7 +160,11 @@ function ScrollRow({ items, rowLabel }) {
         }}
       >
         {items.map((item) => (
-          <article key={item.key} className="catalog-row-item">
+          <Link
+            key={item.key}
+            to={`/product/${slugFromCatalogName(item.name)}`}
+            className="catalog-row-item catalog-row-item--link"
+          >
             <div className="catalog-product-media">
               <img className="catalog-product-img" src={item.img} alt={item.name} loading="lazy" />
             </div>
@@ -169,7 +175,7 @@ function ScrollRow({ items, rowLabel }) {
               </div>
               <div className="catalog-product-price">{item.price}</div>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
 
