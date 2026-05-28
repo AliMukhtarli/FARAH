@@ -3078,44 +3078,79 @@ img {
   margin-bottom: clamp(24px, 3vw, 36px);
 }
 
-.product-collections-grid {
+.product-collections-grid,
+.animated-3d-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: clamp(14px, 1.8vw, 22px);
 }
 
-.product-collections-card {
+/* Animated 3D collection cards */
+.animated-3d-card-wrap {
   text-decoration: none;
   color: inherit;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: opacity 0.2s ease;
 }
 
-.product-collections-card:hover {
-  opacity: 0.88;
-}
-
-.product-collections-media {
+.animated-3d-card {
+  position: relative;
   aspect-ratio: 1;
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.55);
   overflow: hidden;
+  box-shadow: 0 8px 24px rgba(26, 26, 26, 0.06);
+  border: 1px solid rgba(26, 26, 26, 0.06);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.animated-3d-card-wrap:hover .animated-3d-card {
+  box-shadow: 0 18px 40px rgba(26, 26, 26, 0.12);
+}
+
+.animated-3d-card-media {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: clamp(10px, 1.2vw, 16px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(10px, 1.2vw, 16px);
 }
 
-.product-collections-media img {
+.animated-3d-card-media img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+  transition: transform 0.4s ease;
 }
 
-.product-collections-name {
+.animated-3d-card-wrap:hover .animated-3d-card-media img {
+  transform: scale(1.04);
+}
+
+.animated-3d-card-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.animated-3d-card-edge {
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(224, 123, 42, 0.25);
+  z-index: 3;
+}
+
+.animated-3d-card-title {
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
   font-weight: 500;
@@ -3124,7 +3159,7 @@ img {
   margin: 0;
 }
 
-.product-collections-price {
+.animated-3d-card-price {
   font-family: 'DM Sans', sans-serif;
   font-size: 11px;
   color: var(--text-muted);
@@ -3132,19 +3167,22 @@ img {
 }
 
 @media (max-width: 1100px) {
-  .product-collections-grid {
+  .product-collections-grid,
+  .animated-3d-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
 @media (max-width: 900px) {
-  .product-collections-grid {
+  .product-collections-grid,
+  .animated-3d-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .product-collections-grid {
+  .product-collections-grid,
+  .animated-3d-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }

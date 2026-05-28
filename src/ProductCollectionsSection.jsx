@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Animated3DCardGrid } from "./Animated3DCard.jsx";
 import { getCollectionItems } from "./catalogProducts.js";
 
 const ArrowUpRight = () => (
@@ -25,21 +26,7 @@ export default function ProductCollectionsSection() {
         </Link>
       </div>
 
-      <div className="product-collections-grid">
-        {items.map((item) => (
-          <Link
-            key={item.id}
-            to={`/product/${item.slug}`}
-            className="product-collections-card"
-          >
-            <div className="product-collections-media">
-              <img src={item.img} alt={item.name} loading="lazy" />
-            </div>
-            <h3 className="product-collections-name">{item.name}</h3>
-            <p className="product-collections-price">{item.price}</p>
-          </Link>
-        ))}
-      </div>
+      <Animated3DCardGrid items={items} />
     </section>
   );
 }
