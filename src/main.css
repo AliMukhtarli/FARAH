@@ -38,10 +38,10 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-html, body {
+/* html, body {
   overflow-x: hidden;
   max-width: 100%;
-}
+} */
 
 body {
   font-family: 'DM Sans', sans-serif;
@@ -789,9 +789,113 @@ img {
 }
 
 .tech-header {
+  position: relative;
+  z-index: 5;
   text-align: center;
   max-width: 760px;
   margin: 0 auto 56px;
+  background-color: var(--cream);
+}
+
+.tech-parallax {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 48px;
+  width: min(1180px, 100%);
+  /* Do NOT set overflow:hidden here — it breaks position:sticky */
+}
+
+/* Zoom parallax */
+.zp-runway {
+  position: relative;
+  height: 300vh;
+  width: 100%;
+}
+
+.zp-pin {
+  position: sticky;
+  /* Center in viewport when pinned — without transform (transform overlaps content above) */
+  top: calc(50vh - min(39vh, 380px));
+  height: min(78vh, 760px);
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.10);
+}
+
+.zp-root {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: transparent;
+}
+
+.zp-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.zp-frame {
+  position: relative;
+  height: 25vh;
+  width: 25vw;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.zp-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Position overrides per layer (matching your Tailwind demo layout) */
+.zp-layer--1 .zp-frame { top: -30vh; left: 5vw;  height: 30vh; width: 35vw; }
+.zp-layer--2 .zp-frame { top: -10vh; left: -25vw; height: 45vh; width: 20vw; }
+.zp-layer--3 .zp-frame { left: 27.5vw; height: 25vh; width: 25vw; }
+.zp-layer--4 .zp-frame { top: 27.5vh; left: 5vw; height: 25vh; width: 20vw; }
+.zp-layer--5 .zp-frame { top: 27.5vh; left: -22.5vw; height: 25vh; width: 30vw; }
+.zp-layer--6 .zp-frame { top: 22.5vh; left: 25vw; height: 15vh; width: 15vw; }
+
+/* The overrides above rely on relative positioning */
+.zp-layer .zp-frame {
+  position: relative;
+}
+
+.zp-layer--0 { z-index: 7; }
+.zp-layer--1 { z-index: 6; }
+.zp-layer--2 { z-index: 5; }
+.zp-layer--3 { z-index: 4; }
+.zp-layer--4 { z-index: 3; }
+.zp-layer--5 { z-index: 2; }
+.zp-layer--6 { z-index: 1; }
+
+@media (max-width: 900px) {
+  .tech-parallax {
+    width: 100%;
+  }
+
+  .zp-pin {
+    height: min(74vh, 680px);
+    border-radius: 16px;
+  }
+
+  .zp-runway {
+    height: 260vh;
+  }
+
+  .zp-frame {
+    width: 40vw;
+    height: 22vh;
+  }
 }
 
 .tech-title {
