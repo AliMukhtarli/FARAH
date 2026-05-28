@@ -1,0 +1,98 @@
+import { useMemo, useState } from "react";
+import NavBar from "./NavBar.jsx";
+
+const FILTERS = ["Hamısı", "Oturacaqlar", "Masalar", "İşıqlandırma", "Saxlama bölmələri"];
+
+const SlidersIcon = () => (
+  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
+    <path d="M4 21v-7" />
+    <path d="M4 10V3" />
+    <path d="M12 21v-9" />
+    <path d="M12 8V3" />
+    <path d="M20 21v-5" />
+    <path d="M20 12V3" />
+    <path d="M2 14h4" />
+    <path d="M10 8h4" />
+    <path d="M18 16h4" />
+  </svg>
+);
+
+export default function CatalogPage() {
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState("Hamısı");
+
+  const filterListId = useMemo(() => "catalog-filter-list", []);
+
+  return (
+    <div className="catalog-page">
+      <NavBar />
+
+      <main className="catalog-main">
+        <section className="catalog-hero" aria-label="Kataloq">
+          <div className="catalog-hero-card">
+            <div className="catalog-hero-copy">
+              <p className="catalog-eyebrow">QONAQ OTAĞINIZ ÜÇÜN</p>
+              <h1 className="catalog-title">
+                Mükəmməl <br />
+                məkanınızı yaradın
+              </h1>
+              <p className="catalog-desc">
+                Farah Mobilya ilə evinizə rahatlıq və zəriflik gətirin. Hər bir mebel
+                parçasında sənətkarlıq və keyfiyyət.
+              </p>
+              <div className="catalog-actions">
+                <button className="btn-primary">Kolleksiyaya Bax</button>
+                <button className="btn-secondary">
+                  Istanbul Showroom
+                  <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <img
+              className="catalog-hero-sofa"
+              src="/CatalogPageSofa.png"
+              alt="Farah kataloq divanı"
+            />
+          </div>
+
+          <div className="catalog-filters">
+            <button
+              type="button"
+              className="catalog-filter-toggle"
+              aria-expanded={filtersOpen}
+              aria-controls={filterListId}
+              onClick={() => setFiltersOpen((v) => !v)}
+            >
+              <span className="catalog-filter-icon"><SlidersIcon /></span>
+              <span>Filtr və çeşidləmə</span>
+            </button>
+
+            <div
+              id={filterListId}
+              className={`catalog-filter-panel${filtersOpen ? " is-open" : ""}`}
+            >
+              <ul className="catalog-filter-list">
+                {FILTERS.map((f) => (
+                  <li key={f}>
+                    <button
+                      type="button"
+                      className={`catalog-filter-item${activeFilter === f ? " is-active" : ""}`}
+                      onClick={() => setActiveFilter(f)}
+                    >
+                      {f}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
+

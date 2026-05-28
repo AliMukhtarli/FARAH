@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar.jsx";
+
 const sofaImage = "/FarahSofa.png";
 
 const InstagramIcon = () => (
@@ -29,6 +32,8 @@ const LinkedinIcon = () => (
 );
 
 export default function FarahHero() {
+  const navigate = useNavigate();
+
   const scrollToHome = (e) => {
     e.preventDefault();
     document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
@@ -49,31 +54,7 @@ export default function FarahHero() {
         alt="Farah Mobilya divan kolleksiyası"
       />
 
-      <header className="nav-sticky">
-        <nav className="nav">
-          <a className="nav-logo" href="#home" onClick={scrollToHome}>
-            <img src="/FaviconFarah.svg" alt="Farah Mobilya" className="nav-logo-icon" />
-          </a>
-
-          <ul className="nav-links">
-            {["Ana Səhifə", "Haqqımızda", "Kataloq", "Əlaqə"].map((link) => (
-              <li key={link}>
-                <a href="#">{link}</a>
-              </li>
-            ))}
-          </ul>
-
-          <div className="nav-right">
-            <button className="nav-search" aria-label="Axtar">
-              <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </button>
-            <button type="button" className="nav-cta">B2B Sifariş</button>
-          </div>
-        </nav>
-      </header>
+      <NavBar />
 
       <div className="hero-inner">
         <div className="hero-content">
@@ -91,7 +72,9 @@ export default function FarahHero() {
           </p>
 
           <div className="hero-actions">
-            <button className="btn-primary">Kolleksiyaya Bax</button>
+            <button className="btn-primary" onClick={() => navigate("/catalog")}>
+              Kolleksiyaya Bax
+            </button>
             <button className="btn-secondary">
               Istanbul Showroom
               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
