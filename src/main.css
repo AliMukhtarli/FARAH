@@ -56,7 +56,7 @@ body {
 .catalog-page {
   min-height: 100vh;
   position: relative;
-  background: var(--cream);
+  background: rgba(251, 245, 239, 1);
 }
 
 .catalog-page::before {
@@ -65,7 +65,14 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: calc(var(--nav-height) + 36px + 680px);
+  /* Black only behind the navbar + hero section */
+  height: calc(
+    var(--nav-height) + 36px +
+    10px + /* hero padding-top */
+    clamp(420px, 62vh, 560px) + /* hero card min-height */
+    10px + /* hero padding-bottom */
+    45px   /* hero margin-bottom */
+  );
   background: #1A1A1A;
   z-index: 0;
 }
@@ -108,7 +115,7 @@ body {
 .catalog-cream {
   width: 100vw;
   margin-left: calc(50% - 50vw);
-  background: var(--cream);
+  background: rgba(200, 199, 191, 0.3);
   /* Start cream exactly from the filter row top */
   padding: 0 0 110px;
   min-height: 320px;
