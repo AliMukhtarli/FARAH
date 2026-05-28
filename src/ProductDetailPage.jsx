@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import NavBar from "./NavBar.jsx";
 import { getProductBySlug } from "./catalogProducts.js";
 import ProductSimilarSection from "./ProductSimilarSection.jsx";
+import ProductCollectionsSection from "./ProductCollectionsSection.jsx";
 
 export default function ProductDetailPage() {
   const { slug } = useParams();
@@ -149,6 +150,8 @@ export default function ProductDetailPage() {
         </div>
 
         <ProductSimilarSection currentSlug={product.slug} />
+
+        <ProductCollectionsSection />
       </main>
     </div>
   );

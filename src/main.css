@@ -2986,7 +2986,7 @@ img {
   padding: 20px clamp(22px, 3vw, 36px);
   border: none;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.55);
+  background: rgba(241, 234, 209, 1);
   cursor: pointer;
   text-align: left;
   text-decoration: none;
@@ -3065,6 +3065,88 @@ img {
   margin-top: 0;
   border-top: none;
   padding-top: clamp(28px, 3vw, 40px);
+}
+
+/* ─── OTHER COLLECTIONS GRID ─── */
+.product-collections {
+  width: min(var(--container-max), 100%);
+  margin: clamp(56px, 7vw, 88px) auto 0;
+  padding-bottom: clamp(48px, 6vw, 72px);
+}
+
+.product-collections-header {
+  margin-bottom: clamp(24px, 3vw, 36px);
+}
+
+.product-collections-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(14px, 1.8vw, 22px);
+}
+
+.product-collections-card {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: opacity 0.2s ease;
+}
+
+.product-collections-card:hover {
+  opacity: 0.88;
+}
+
+.product-collections-media {
+  aspect-ratio: 1;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 1.2vw, 16px);
+}
+
+.product-collections-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.product-collections-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+.product-collections-price {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  .product-collections-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .product-collections-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .product-collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {

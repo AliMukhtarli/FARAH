@@ -192,3 +192,21 @@ export const SIMILAR_PRODUCTS = [
 export function getSimilarProducts(currentSlug, limit = 5) {
   return SIMILAR_PRODUCTS.filter((p) => p.slug !== currentSlug).slice(0, limit);
 }
+
+/** Other collections grid (temporary — backend later) */
+export const COLLECTION_ITEMS = [
+  { id: "col-1", slug: "salis-istirahet-kursusu", name: "Yellənən Kürsü", price: "$79", img: "/SalisIstirahetKursusu.png" },
+  { id: "col-2", slug: "luna-asma-cilciraq", name: "Aura Bitki Vazası", price: "$45", img: "/LunaAsmaCilciraq.png" },
+  { id: "col-3", slug: "linear-komod", name: "Hasır Puf", price: "$129", img: "/LinearKomod.png" },
+  { id: "col-4", slug: "aria-palid-masasi", name: "Dairəvi Yemək Masası", price: "$890", img: "/AriaPalidMasasi.png" },
+  { id: "col-5", slug: "luna-asma-cilciraq", name: "Masa Lampası", price: "$79", img: "/LunaAsmaCilciraq.png" },
+  { id: "col-6", slug: "luna-liven", name: "Geyim Asqısı", price: "$65", img: "/LunaLivenMain.png" },
+  { id: "col-7", slug: "linear-komod", name: "Divar Rəfi", price: "$120", img: "/LinearKomod.png" },
+  { id: "col-8", slug: "aria-palid-masasi", name: "Ağac Şkaf", price: "$450", img: "/AriaPalidMasasi.png" },
+  { id: "col-9", slug: "aria-palid-masasi", name: "Kofe Masası", price: "$320", img: "/AriaPalidMasasi.png" },
+  { id: "col-10", slug: "luna-liven", name: "Yemək Kürsüsü", price: "$189", img: "/LunaLivenMain.png" },
+];
+
+export function getCollectionItems() {
+  return COLLECTION_ITEMS;
+}
