@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import NavBar from "./NavBar.jsx";
 import CatalogHero from "./CatalogHero.jsx";
 import CatalogProducts from "./CatalogProducts.jsx";
+import FooterSection from "./FooterSection.jsx";
 
 const FILTERS = ["Hamısı", "Oturacaqlar", "Masalar", "İşıqlandırma", "Saxlama bölmələri"];
 
@@ -68,6 +69,8 @@ export default function CatalogPage() {
           <CatalogProducts activeFilter={activeFilter} />
         </section>
       </main>
+
+      <FooterSection />
     </div>
   );
 }

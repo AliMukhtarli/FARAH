@@ -84,7 +84,7 @@ body {
 
 .catalog-main {
   padding-top: calc(var(--nav-height) + 36px);
-  padding-bottom: calc(var(--nav-height) + 36px);
+  padding-bottom: 0;
 
 }
 
@@ -117,7 +117,7 @@ body {
   margin-left: calc(50% - 50vw);
   background: rgba(200, 199, 191, 0.3);
   /* Start cream exactly from the filter row top */
-  padding: 0 0 110px;
+  padding: 0 0 28px;
   min-height: 320px;
 }
 
