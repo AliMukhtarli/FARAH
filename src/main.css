@@ -821,13 +821,15 @@ img {
   overflow: hidden;
   border-radius: 18px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.10);
+  background: var(--cream);
+  isolation: isolate;
 }
 
 .zp-root {
   position: relative;
   height: 100%;
   width: 100%;
-  background: transparent;
+  background: var(--cream);
 }
 
 .zp-layer {
@@ -2041,14 +2043,7 @@ img {
 
 /* Giant FARAH wordmark — bronze/wood gradient, partially clipped */
 .footer-wordmark {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 900;
-  font-size: clamp(80px, 22vw, 290px);
-  line-height: 0.75;
-  text-align: center;
-  letter-spacing: clamp(2px, 1.8vw, 29px);
-  margin: 20px 0 -6%;
-  background: linear-gradient(
+  --wordmark-gradient: linear-gradient(
     180deg,
     #8a4513 0%,
     #6f3812 25%,
@@ -2056,15 +2051,32 @@ img {
     #2a1810 85%,
     #1c1a17 100%
   );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 900;
+  /* Keep it huge but guarantee the last letter stays inside */
+  font-size: clamp(140px, 34vw, 460px);
+  line-height: 0.75;
+  margin: 20px 0 -6%;
+  padding: 0 16px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
   user-select: none;
   pointer-events: none;
   opacity: 0.95;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.footer-wordmark-letter {
+  background: var(--wordmark-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 0;
 }
 
 /* Bottom strip — 3-part bar */

@@ -272,7 +272,13 @@ export default function FooterSection() {
         </div>
 
         {/* Giant FARAH wordmark */}
-        <div ref={giantTextRef} className="footer-wordmark" aria-hidden="true">FARAH</div>
+        <div ref={giantTextRef} className="footer-wordmark" aria-hidden="true">
+          {"FARAH".split("").map((ch, i) => (
+            <span key={i} className="footer-wordmark-letter">
+              {ch}
+            </span>
+          ))}
+        </div>
 
         {/* Bottom bar */}
         <div ref={bottomRef} className="footer-bottom">
