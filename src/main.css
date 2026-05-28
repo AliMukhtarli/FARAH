@@ -240,6 +240,120 @@ body {
   color: rgba(26, 26, 26, 0.92);
 }
 
+.catalog-products {
+  padding-top: 14px;
+}
+
+.catalog-products-inner {
+  width: min(1600px, 96%);
+  margin-inline: auto;
+  padding: 0 10px;
+}
+
+.catalog-rows {
+  display: grid;
+  gap: 28px;
+}
+
+.catalog-product-media {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.catalog-product-img {
+  width: 100%;
+  height: clamp(220px, 32vw, 420px);
+  object-fit: cover;
+  display: block;
+}
+
+.catalog-row-scroller {
+  --catalog-row-gap: clamp(18px, 2vw, 28px);
+  display: flex;
+  gap: var(--catalog-row-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 2px 10px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.catalog-row-scroller::-webkit-scrollbar {
+  height: 0; /* Chrome/Safari */
+}
+
+.catalog-row-item {
+  flex: 0 0 calc((100% - var(--catalog-row-gap)) / 2);
+  min-width: 0;
+}
+
+.catalog-row-scrollbar {
+  height: 4px;
+  width: min(720px, 86%);
+  background: transparent;
+  border-radius: 999px;
+  position: relative;
+  margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: pan-x;
+}
+
+.catalog-row-scrollbar.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.catalog-row-thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: #1A1A1A;
+  cursor: grab;
+  touch-action: none;
+}
+
+.catalog-row-thumb:active {
+  cursor: grabbing;
+}
+
+.catalog-product-meta {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: end;
+  padding: 10px 0;
+}
+
+.catalog-product-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: rgba(26, 26, 26, 0.92);
+}
+
+.catalog-product-sub {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: rgba(26, 26, 26, 0.55);
+  text-transform: uppercase;
+}
+
+.catalog-product-price {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(26, 26, 26, 0.75);
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
 @media (max-width: 900px) {
   .catalog-hero-card {
     grid-template-columns: 1fr;
@@ -254,6 +368,19 @@ body {
     width: min(520px, 92%);
     margin: 18px auto 0;
     display: block;
+  }
+
+  .catalog-row-item {
+    flex-basis: calc(100% - 12px);
+    min-width: 0;
+  }
+
+  .catalog-row-scrollbar {
+    width: min(520px, 86%);
+  }
+
+  .catalog-product-meta {
+    grid-template-columns: 1fr auto;
   }
 }
 
