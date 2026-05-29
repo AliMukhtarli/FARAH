@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useWordmarkFit } from "@/hooks/useWordmarkFit.js";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -144,9 +145,12 @@ function MagneticButton({ as: Tag = "a", className = "", children, ...props }) {
 export default function FooterSection() {
   const wrapperRef = useRef(null);
   const giantTextRef = useRef(null);
+  const wordmarkInnerRef = useRef(null);
   const gridRef = useRef(null);
   const colsRef = useRef(null);
   const bottomRef = useRef(null);
+
+  useWordmarkFit(giantTextRef, wordmarkInnerRef);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -156,10 +160,9 @@ export default function FooterSection() {
       // Giant FARAH wordmark — slow parallax & fade as the footer enters
       gsap.fromTo(
         giantTextRef.current,
-        { y: 80, scale: 0.92, opacity: 0 },
+        { y: 80, opacity: 0 },
         {
           y: 0,
-          scale: 1,
           opacity: 1,
           ease: "power1.out",
           scrollTrigger: {
@@ -273,11 +276,13 @@ export default function FooterSection() {
 
         {/* Giant FARAH wordmark */}
         <div ref={giantTextRef} className="footer-wordmark" aria-hidden="true">
-          {"FARAH".split("").map((ch, i) => (
-            <span key={i} className="footer-wordmark-letter">
-              {ch}
-            </span>
-          ))}
+          <div ref={wordmarkInnerRef} className="footer-wordmark-inner">
+            {"FARAH".split("").map((ch, i) => (
+              <span key={i} className="footer-wordmark-letter">
+                {ch}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Bottom bar */}

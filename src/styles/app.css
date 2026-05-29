@@ -2433,8 +2433,23 @@ img {
   margin-top: 1px;
 }
 
-/* Giant FARAH wordmark — bronze/wood gradient, partially clipped */
+/* Giant FARAH wordmark — outer clips; inner keeps design size + auto scale */
 .footer-wordmark {
+  margin: 20px 0 -6%;
+  padding: 0;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.95;
+  overflow: hidden;
+}
+
+.footer-wordmark-inner {
   --wordmark-gradient: linear-gradient(
     180deg,
     #8a4513 0%,
@@ -2443,26 +2458,20 @@ img {
     #2a1810 85%,
     #1c1a17 100%
   );
+  --wordmark-scale: 1;
 
   font-family: 'DM Sans', sans-serif;
   font-weight: 900;
-  /* Keep it huge but guarantee the last letter stays inside */
   font-size: clamp(140px, 34vw, 460px);
   line-height: 0.75;
-  margin: 20px 0 -6%;
-  padding: 0;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
   display: flex;
   justify-content: center;
   gap: clamp(22px, 6.2vw, 88px);
   align-items: baseline;
-  user-select: none;
-  pointer-events: none;
-  opacity: 0.95;
   white-space: nowrap;
-  overflow: hidden;
+  transform: scale(var(--wordmark-scale));
+  transform-origin: center bottom;
+  will-change: transform;
 }
 
 .footer-wordmark-letter {
@@ -2596,8 +2605,6 @@ img {
   .footer-brand-desc { max-width: none; }
 
   .footer-wordmark {
-    font-size: clamp(72px, 26vw, 180px);
-    letter-spacing: clamp(2px, 1.2vw, 12px);
     margin-bottom: -4%;
   }
 
@@ -2624,9 +2631,6 @@ img {
     font-size: 30px;
   }
 
-  .footer-wordmark {
-    letter-spacing: 1px;
-  }
 }
 
 /* ─── PRODUCT DETAIL ─── */
