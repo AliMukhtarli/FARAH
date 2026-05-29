@@ -1005,8 +1005,12 @@ img {
 
 .about-heading-row--3 {
   align-items: flex-end;
-  gap: clamp(-3px, -6vw, 15px);
+  gap: clamp(16px, 3vw, 28px);
   justify-content: center;
+}
+
+.about-heading-row--3 .about-heading-word {
+  flex-shrink: 0;
 }
 
 .about-heading-word {
@@ -1058,20 +1062,35 @@ img {
   padding-bottom: 8px;
   margin-left: clamp(18px, 4.2vw, 30px);
   justify-content: flex-start;
+  flex-shrink: 0;
 }
 
 .about-stat {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  flex-shrink: 0;
 }
 
 .about-stat-value {
+  display: inline-grid;
   font-family: 'DM Sans', sans-serif;
   font-size: clamp(18px, 2.5vw, 30px);
   font-weight: 300;
   color: var(--charcoal);
   line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.about-stat-value-sizer,
+.about-stat-value-num {
+  grid-area: 1 / 1;
+}
+
+.about-stat-value-sizer {
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
 }
 
 .about-stat-label {

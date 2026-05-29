@@ -41,11 +41,17 @@ function formatValue(value, format) {
 
 function AnimatedStat({ value, suffix, format, label, isActive }) {
   const animated = useCountUp(value, isActive);
+  const finalText = `${formatValue(value, format)}${suffix}`;
+  const displayText = `${formatValue(animated, format)}${suffix}`;
+
   return (
     <div className="about-stat">
-      <span className="about-stat-value">
-        {formatValue(animated, format)}
-        {suffix}
+      <span className="about-stat-value" aria-live="polite">
+        {/* Invisible final text reserves width so the count-up doesn't shift layout */}
+        <span className="about-stat-value-sizer" aria-hidden="true">
+          {finalText}
+        </span>
+        <span className="about-stat-value-num">{displayText}</span>
       </span>
       <span className="about-stat-label">{label}</span>
     </div>
