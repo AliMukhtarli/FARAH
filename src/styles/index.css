@@ -1,0 +1,9 @@
+/**
+ * styles/index.css — Single entry point for all global styles.
+ * Import this once from main.jsx.
+ */
+
+@import './reset.css';
+@import './variables.css';
+@import './globals.css';
+@import './app.css';

@@ -1,0 +1,22 @@
+/**
+ * variables.css — Design tokens (colors, spacing, layout).
+ * Change values here to theme the entire site.
+ */
+
+:root {
+  --cream: #f5f0ea;
+  --cream-dark: #ede6dc;
+  --orange: #e07b2a;
+  --orange-hover: #c96a1a;
+  --charcoal: #1a1a1a;
+  --text-muted: #6b6560;
+  --white: #ffffff;
+  --nav-height: 64px;
+
+  --container-max: 1600px;
+  --container-width: min(var(--container-max), 94%);
+  --container-pad: clamp(18px, 3.2vw, 56px);
+
+  --frame-w: clamp(4px, 0.55vw, 8px);
+  --frame-c: rgba(212, 195, 179, 0.92);
+}

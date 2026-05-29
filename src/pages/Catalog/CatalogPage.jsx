@@ -1,10 +1,8 @@
-import { useMemo, useState } from "react";
-import NavBar from "./NavBar.jsx";
-import CatalogHero from "./CatalogHero.jsx";
-import CatalogProducts from "./CatalogProducts.jsx";
-import FooterSection from "./FooterSection.jsx";
-
-const FILTERS = ["Hamısı", "Oturacaqlar", "Masalar", "İşıqlandırma", "Saxlama bölmələri"];
+import { useMemo, useState } from 'react';
+import PageLayout from '@/components/layout/PageLayout/PageLayout.jsx';
+import CatalogHero from '@/sections/catalog/CatalogHero/CatalogHero.jsx';
+import CatalogProducts from '@/sections/catalog/CatalogProducts/CatalogProducts.jsx';
+import { CATALOG_FILTERS } from '@/data/catalogFilters.js';
 
 const SlidersIcon = () => (
   <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
@@ -20,16 +18,14 @@ const SlidersIcon = () => (
   </svg>
 );
 
+/** Product catalog listing with filters and scrollable rows. */
 export default function CatalogPage() {
   const [filtersOpen, setFiltersOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState("Hamısı");
-
-  const filterListId = useMemo(() => "catalog-filter-list", []);
+  const [activeFilter, setActiveFilter] = useState('Hamısı');
+  const filterListId = useMemo(() => 'catalog-filter-list', []);
 
   return (
-    <div className="catalog-page">
-      <NavBar />
-
+    <PageLayout className="catalog-page">
       <main className="catalog-main">
         <CatalogHero />
 
@@ -42,20 +38,22 @@ export default function CatalogPage() {
               aria-controls={filterListId}
               onClick={() => setFiltersOpen((v) => !v)}
             >
-              <span className="catalog-filter-icon"><SlidersIcon /></span>
+              <span className="catalog-filter-icon">
+                <SlidersIcon />
+              </span>
               <span>Filtr və çeşidləmə</span>
             </button>
 
             <div
               id={filterListId}
-              className={`catalog-filter-panel${filtersOpen ? " is-open" : ""}`}
+              className={`catalog-filter-panel${filtersOpen ? ' is-open' : ''}`}
             >
               <ul className="catalog-filter-list">
-                {FILTERS.map((f) => (
+                {CATALOG_FILTERS.map((f) => (
                   <li key={f}>
                     <button
                       type="button"
-                      className={`catalog-filter-item${activeFilter === f ? " is-active" : ""}`}
+                      className={`catalog-filter-item${activeFilter === f ? ' is-active' : ''}`}
                       onClick={() => setActiveFilter(f)}
                     >
                       {f}
@@ -69,9 +67,6 @@ export default function CatalogPage() {
           <CatalogProducts activeFilter={activeFilter} />
         </section>
       </main>
-
-      <FooterSection />
-    </div>
+    </PageLayout>
   );
 }
-

@@ -1,12 +1,13 @@
-import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import NavBar from "./NavBar.jsx";
-import { getProductBySlug } from "./catalogProducts.js";
-import ProductSimilarSection from "./ProductSimilarSection.jsx";
-import ProductCollectionsSection from "./ProductCollectionsSection.jsx";
-import FooterSection from "./FooterSection.jsx";
+import { useMemo, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import PageLayout from '@/components/layout/PageLayout/PageLayout.jsx';
+import { getProductBySlug } from '@/data/products.js';
+import ProductSimilarSection from '@/sections/product/ProductSimilar/ProductSimilarSection.jsx';
+import ProductCollectionsSection from '@/sections/product/ProductCollections/ProductCollectionsSection.jsx';
+import { ROUTES } from '@/router/routes.js';
 
-export default function ProductDetailPage() {
+/** Single product view — gallery, specs, similar items, collections. */
+export default function ProductDetailsPage() {
   const { slug } = useParams();
   const product = useMemo(() => getProductBySlug(slug), [slug]);
 
@@ -16,25 +17,21 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="product-detail-page">
-        <NavBar />
+      <PageLayout className="product-detail-page">
         <main className="product-detail-main product-detail-main--empty">
           <p>Məhsul tapılmadı.</p>
-          <Link to="/catalog" className="btn-primary">
+          <Link to={ROUTES.catalog} className="btn-primary">
             Kataloqa qayıt
           </Link>
         </main>
-        <FooterSection />
-      </div>
+      </PageLayout>
     );
   }
 
   const mainSrc = product.thumbnails[activeThumb] ?? product.mainImage;
 
   return (
-    <div className="product-detail-page">
-      <NavBar />
-
+    <PageLayout className="product-detail-page">
       <main className="product-detail-main">
         <div className="product-detail-layout">
           <aside className="product-detail-left">
@@ -42,7 +39,7 @@ export default function ProductDetailPage() {
             <p className="product-detail-stock">
               <span className="product-detail-stock-num">
                 {product.stock.current}/{product.stock.total}
-              </span>{" "}
+              </span>{' '}
               Mövcuddur
             </p>
 
@@ -52,7 +49,7 @@ export default function ProductDetailPage() {
                   key={i}
                   type="button"
                   role="listitem"
-                  className={`product-detail-thumb${activeThumb === i ? " is-active" : ""}`}
+                  className={`product-detail-thumb${activeThumb === i ? ' is-active' : ''}`}
                   onClick={() => setActiveThumb(i)}
                   aria-label={`Şəkil ${i + 1}`}
                   aria-pressed={activeThumb === i}
@@ -68,8 +65,8 @@ export default function ProductDetailPage() {
                   key={c.id}
                   type="button"
                   role="listitem"
-                  className={`product-detail-swatch${activeColor === i ? " is-active" : ""}`}
-                  style={{ "--swatch": c.hex }}
+                  className={`product-detail-swatch${activeColor === i ? ' is-active' : ''}`}
+                  style={{ '--swatch': c.hex }}
                   onClick={() => setActiveColor(i)}
                   aria-label={c.label}
                   aria-pressed={activeColor === i}
@@ -96,7 +93,7 @@ export default function ProductDetailPage() {
               {product.features.map((text, i) => (
                 <div
                   key={text}
-                  className={`product-detail-feature${i === product.features.length - 1 ? " product-detail-feature--accent" : ""}`}
+                  className={`product-detail-feature${i === product.features.length - 1 ? ' product-detail-feature--accent' : ''}`}
                 >
                   {text}
                 </div>
@@ -152,11 +149,8 @@ export default function ProductDetailPage() {
         </div>
 
         <ProductSimilarSection currentSlug={product.slug} />
-
         <ProductCollectionsSection />
       </main>
-
-      <FooterSection />
-    </div>
+    </PageLayout>
   );
 }

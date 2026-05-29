@@ -1,53 +1,15 @@
-import { useEffect, useRef, useState } from "react";
-
-/* Animates a number from 0 → target linearly so small and large
-   numbers feel evenly paced. Duration scales mildly with magnitude so
-   "50" doesn't finish in a flash next to "8000". */
-function useCountUp(target, isActive) {
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    if (!isActive) {
-      setValue(0);
-      return undefined;
-    }
-
-    const duration = 2200;
-
-    let frame;
-    const start = performance.now();
-
-    const tick = (now) => {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      setValue(Math.round(target * progress));
-      if (progress < 1) frame = requestAnimationFrame(tick);
-    };
-
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [target, isActive]);
-
-  return value;
-}
-
-/* Azerbaijani-style thousand separator using "." (e.g. 8000 → "8.000"). */
-function formatValue(value, format) {
-  if (format === "thousand-dot") {
-    return value.toLocaleString("de-DE");
-  }
-  return value.toString();
-}
+import { useCountUp } from '@/hooks/useCountUp.js';
+import { useInView } from '@/hooks/useInView.js';
+import { formatValue } from '@/utils/format.js';
 
 function AnimatedStat({ value, suffix, format, label, isActive }) {
   const animated = useCountUp(value, isActive);
-  const finalText = `${formatValue(value, format)}${suffix}`;
-  const displayText = `${formatValue(animated, format)}${suffix}`;
+  const finalText = `${formatValue(value, format)}${suffix ?? ''}`;
+  const displayText = `${formatValue(animated, format)}${suffix ?? ''}`;
 
   return (
     <div className="about-stat">
       <span className="about-stat-value" aria-live="polite">
-        {/* Invisible final text reserves width so the count-up doesn't shift layout */}
         <span className="about-stat-value-sizer" aria-hidden="true">
           {finalText}
         </span>
@@ -59,46 +21,27 @@ function AnimatedStat({ value, suffix, format, label, isActive }) {
 }
 
 export default function AboutSection() {
-  const sectionRef = useRef(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return undefined;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.2 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const { ref: sectionRef, inView } = useInView({ threshold: 0.2 });
 
   const stats = [
-    { value: 8000, suffix: "m²", format: "thousand-dot", label: "İstehsalat Sahəsi" },
-    { value: 320, suffix: "+", label: "B2B Layihə" },
-    { value: 50, suffix: "+", label: "Usta və Mühəndis" },
+    { value: 8000, suffix: 'm²', format: 'thousand-dot', label: 'İstehsalat Sahəsi' },
+    { value: 320, suffix: '+', label: 'B2B Layihə' },
+    { value: 50, suffix: '+', label: 'Usta və Mühəndis' },
   ];
 
   return (
     <section
+      id="about"
       ref={sectionRef}
-      className={`about-section${inView ? " is-visible" : ""}`}
+      className={`about-section${inView ? ' is-visible' : ''}`}
     >
       <div className="about-container">
-
         <div className="about-heading-block">
           <div className="about-heading-row about-heading-row--1">
             <span className="about-heading-word">15 il</span>
             <div className="about-img-wrap about-img-wrap--round">
               <img
-                src="./Furniture.png"
+                src="/Furniture.png"
                 alt="Bej yastıq"
                 className="about-inline-img"
               />
@@ -143,7 +86,6 @@ export default function AboutSection() {
           ölkələrində 320+ layihə həyata keçirmişik. Hər layihəyə öz xüsusi qrafiki, texniki
           çertyojları və komandası ilə yanaşınq.
         </p>
-
       </div>
     </section>
   );

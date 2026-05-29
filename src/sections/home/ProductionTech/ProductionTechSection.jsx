@@ -1,4 +1,4 @@
-import ZoomParallax from "./ZoomParallax.jsx";
+import ZoomParallax from '@/components/common/ZoomParallax/ZoomParallax.jsx';
 
 export default function ProductionTechSection() {
   const images = [

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { slugFromCatalogName } from "./catalogProducts.js";
+import { slugFromCatalogName } from '@/data/products.js';
 
 const ALL = "Hamısı";
 

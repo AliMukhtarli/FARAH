@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import NavBar from "./NavBar.jsx";
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '@/router/routes.js';
 
 const sofaImage = "/FarahSofa.png";
 
@@ -31,13 +31,8 @@ const LinkedinIcon = () => (
   </svg>
 );
 
-export default function FarahHero() {
+export default function HeroSection() {
   const navigate = useNavigate();
-
-  const scrollToHome = (e) => {
-    e.preventDefault();
-    document.getElementById("home")?.scrollIntoView({ behavior: "smooth" });
-  };
 
   const socialLinks = [
     { Icon: InstagramIcon, href: "#", label: "Instagram" },
@@ -53,8 +48,6 @@ export default function FarahHero() {
         src={sofaImage}
         alt="Farah Mobilya divan kolleksiyası"
       />
-
-      <NavBar />
 
       <div className="hero-inner">
         <div className="hero-content">
@@ -72,7 +65,7 @@ export default function FarahHero() {
           </p>
 
           <div className="hero-actions">
-            <button className="btn-primary" onClick={() => navigate("/catalog")}>
+            <button className="btn-primary" onClick={() => navigate(ROUTES.catalog)}>
               Kolleksiyaya Bax
             </button>
             <button className="btn-secondary">

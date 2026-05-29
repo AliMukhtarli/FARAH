@@ -1,0 +1,92 @@
+/**
+ * globals.css — Site-wide base styles and shared utilities.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=DM+Sans:ital,wght@0,400;1,400&family=Playfair+Display:wght@700&display=swap');
+
+.lux-container {
+  width: var(--container-width);
+  margin-inline: auto;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--cream);
+  color: var(--charcoal);
+  min-width: 320px;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* —— Standalone pages (About, Contact) —— */
+.page-main {
+  padding: calc(var(--nav-offset, 100px) + 2rem) 1.5rem 4rem;
+  max-width: var(--container-width, 1200px);
+  margin-inline: auto;
+}
+
+.page-hero {
+  margin-bottom: 2.5rem;
+}
+
+.page-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted, #6b6560);
+  margin: 0 0 0.5rem;
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0 0 1rem;
+}
+
+.page-lead {
+  max-width: 42ch;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--charcoal);
+}
+
+.contact-form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 32rem;
+}
+
+.contact-field {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.contact-field input,
+.contact-field textarea {
+  font: inherit;
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.contact-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}

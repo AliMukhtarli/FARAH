@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import CategoryList from "./CategoryList.jsx";
-import { getSimilarProducts } from "./catalogProducts.js";
+import CategoryList from '@/components/ui/CategoryList/CategoryList.jsx';
+import { getSimilarProducts } from '@/data/products.js';
 
 export default function ProductSimilarSection({ currentSlug }) {
   const similar = useMemo(() => getSimilarProducts(currentSlug), [currentSlug]);

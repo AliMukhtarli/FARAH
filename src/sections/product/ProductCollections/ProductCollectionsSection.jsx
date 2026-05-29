@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { Animated3DCardGrid } from "./Animated3DCard.jsx";
-import { getCollectionItems } from "./catalogProducts.js";
+import { Animated3DCardGrid } from '@/components/ui/Animated3DCard/Animated3DCard.jsx';
+import { getCollectionItems } from '@/data/products.js';
 
 const ArrowUpRight = () => (
   <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden>

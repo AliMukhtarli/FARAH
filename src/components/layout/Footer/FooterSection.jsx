@@ -198,7 +198,7 @@ export default function FooterSection() {
   };
 
   return (
-    <footer ref={wrapperRef} className="footer">
+    <footer id="contact" ref={wrapperRef} className="footer">
       {/* Cinematic background layers */}
       <div className="footer-aurora" aria-hidden="true" />
       <div ref={gridRef} className="footer-bg-grid" aria-hidden="true" />

@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import { ROUTES } from '@/router/routes.js';
+
 const NAV_LINKS = [
-  { to: "/", label: "Ana Səhifə" },
-  { to: "/#about", label: "Haqqımızda" },
-  { to: "/catalog", label: "Kataloq" },
-  { to: "/#contact", label: "Əlaqə" },
+  { to: ROUTES.home, label: 'Ana Səhifə' },
+  { to: ROUTES.about, label: 'Haqqımızda' },
+  { to: ROUTES.catalog, label: 'Kataloq' },
+  { to: ROUTES.contact, label: 'Əlaqə' },
 ];
 
 export default function NavBar() {
