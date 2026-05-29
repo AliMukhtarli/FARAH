@@ -1499,6 +1499,7 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   --frame-w: 20px;
+  --frame-c: #d4c3b3;
   border: var(--frame-w) solid var(--frame-c);
   min-height: clamp(400px, 120vh, 1550px);
   display: flex;
@@ -1703,7 +1704,7 @@ img {
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .flow-section {
-    border-width: 6px;
+    --frame-w: 6px;
     min-height: clamp(560px, 90vh, 760px);
   }
 
@@ -1783,7 +1784,7 @@ img {
 
 @media (max-width: 480px) {
   .flow-section {
-    border-width: 4px;
+    --frame-w: 4px;
   }
 
   .flow-container {
@@ -1819,6 +1820,7 @@ img {
   background: #1E1C1A;
   padding: 290px 0 290px;
   --frame-w: 20px;
+  --frame-c: #d4c3b3;
   border: var(--frame-w) solid var(--frame-c);
 }
 

@@ -18,5 +18,6 @@
   --container-pad: clamp(18px, 3.2vw, 56px);
 
   --frame-w: clamp(4px, 0.55vw, 8px);
-  --frame-c: rgba(212, 195, 179, 0.92);
+  /* Solid color — rgba borders look different on photos vs dark backgrounds */
+  --frame-c: #d4c3b3;
 }
