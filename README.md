@@ -1,16 +1,46 @@
-# React + Vite
+# FARAH Furniture Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FARAH is a responsive furniture website built with React. The project focuses on creating a clean and user-friendly interface for presenting furniture products across different pages and device sizes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Responsive design for desktop, tablet, and mobile devices
+- Multi-page furniture website
+- Reusable React components
+- Product catalog
+- Product filtering functionality
+- Client-side routing
+- Reusable React hooks
+- Custom CSS styling
+- Organized data management
+- Mobile-friendly layouts and navigation
 
-## React Compiler
+## Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript
+- HTML
+- CSS
+- React Router
+- React Hooks
+- Vite
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+src/
+├── assets/              # Images and other project assets
+├── components/          # Reusable UI components
+├── data/                # Product data and catalog filters
+│   ├── catalogFilters.js
+│   ├── products.js
+│   └── index.js
+├── hooks/               # Custom React hooks
+├── pages/               # Website pages
+├── router/              # Application routing
+│   ├── AppRouter.jsx
+│   └── routes.js
+├── sections/            # Reusable page sections
+├── styles/              # CSS and styling
+├── utils/               # Utility functions
+└── main.jsx             # Application entry point
